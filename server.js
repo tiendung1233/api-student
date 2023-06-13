@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Student = require('./model/student');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 mongoose.set('strictQuery', false)
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect('mongodb+srv://nguyentiendung159357:exvFKFwVryKVzAr2@cluster0.iehlqg1.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -17,15 +17,6 @@ app.get('', (req,res) =>{
 
 app.get('/news', (req,res) =>{
   res.send("news")
-})
-app.get('/student',(req,res) =>{
-  try {
-    const data = Student.find()
-  return es.json(data)
-  } catch (error) {
-    console.log(error)
-  }
-  
 })
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
