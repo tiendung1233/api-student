@@ -1,14 +1,25 @@
 {
-  "name": "deploy-api",
+  "name": "api-student",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "build": "echo \"No build specified\" && exit 1",
+  "test": "echo \"No test specified\" && exit 1",
+  "start": "node index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiendung1233/api-student.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiendung1233/api-student/issues"
+  },
+  "homepage": "https://github.com/tiendung1233/api-student#readme",
   "dependencies": {
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
