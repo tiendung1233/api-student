@@ -6,10 +6,7 @@ const Student = require('./model/student');
 const app = express();
 const PORT = process.env.PORT || 3001;
 mongoose.set('strictQuery', false)
-mongoose.connect('mongodb+srv://nguyentiendung159357:exvFKFwVryKVzAr2@cluster0.iehlqg1.mongodb.net/', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect('mongodb+srv://nguyentiendung159357:exvFKFwVryKVzAr2@cluster0.iehlqg1.mongodb.net/')
 
 app.get('', (req,res) =>{
   res.send("home")
