@@ -25,10 +25,10 @@ router.post('/', async (req, res) => {
 
 // get student per class
 
-router.get('/:id', async(req,res) =>{
+router.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
-    const students = await Student.find({ class: id }).populate('classInfo');
+    const students = await Student.find({ classInfo: id }).populate('classInfo');
     res.json(students);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -39,7 +39,7 @@ router.get('/:id', async(req,res) =>{
 router.delete('/:id', async (req, res) => {
   try {
     const studentId = req.params.id;
-    
+
     await Student.findByIdAndRemove(studentId);
 
     res.status(200).json({ message: 'Xóa sinh viên thành công' });
@@ -47,32 +47,32 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: 'Đã xảy ra lỗi trong quá trình xóa sinh viên' });
   }
 });
-router.put('/:id', async (req,res) =>{
+router.put('/:id', async (req, res) => {
   try {
-  const studentId = req.params.id
+    const studentId = req.params.id
 
-  const {name, age, grade, classId } = req.body
-  
-  console.log(name, age, grade, classId)
-  const existingStudent = await Student.findById(studentId);
-  if (!existingStudent) {
-    return res.status(404).json({ error: 'Sinh viên không tồn tại' });
-  }
+    const { name, age, grade, classId } = req.body
 
-  const existingClass = await Classes.findById(classId);
+    console.log(name, age, grade, classId)
+    const existingStudent = await Student.findById(studentId);
+    if (!existingStudent) {
+      return res.status(404).json({ error: 'Sinh viên không tồn tại' });
+    }
+
+    const existingClass = await Classes.findById(classId);
     if (!existingClass) {
       return res.status(404).json({ error: 'Lớp học không tồn tại' });
     }
 
-  existingStudent.name = name;
-  existingStudent.age = age;
-  existingStudent.grade = grade;
-  existingStudent.class = classId;
-  await existingStudent.save();
+    existingStudent.name = name;
+    existingStudent.age = age;
+    existingStudent.grade = grade;
+    existingStudent.class = classId;
+    await existingStudent.save();
 
-  res.status(200).json({ message: 'Cập nhật thông tin sinh viên thành công' });
- } catch (err) {
-  res.status(500).json({ error: 'Đã xảy ra lỗi trong quá trình cập nhật thông tin sinh viên' });
-}
+    res.status(200).json({ message: 'Cập nhật thông tin sinh viên thành công' });
+  } catch (err) {
+    res.status(500).json({ error: 'Đã xảy ra lỗi trong quá trình cập nhật thông tin sinh viên' });
+  }
 })
 module.exports = router;
